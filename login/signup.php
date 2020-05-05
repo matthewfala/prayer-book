@@ -9,8 +9,12 @@
 		<h3 class="title">Signup</h3>
 		<span class="panel-divider"><hr/></span>
 
-		<form class="input-form plastic elevate">
+		<form action="signup_confirmation.php" method="POST" class="input-form plastic elevate">
 			<div class="text-package">
+				<div class="text-input">
+					<label for="name">Email</label>
+		  			<input class="plastic depress" type="text" id="email" name="email" placeholder="email">
+				</div>
 				<div class="text-input">
 					<label for="name">Name</label>
 		  			<input class="plastic depress" type="text" id="name" name="name" placeholder="name">

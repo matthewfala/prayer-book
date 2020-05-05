@@ -59,6 +59,7 @@ a {
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
+	color: white;
 }
 .naming h1 {
 	padding: 0;
@@ -151,6 +152,13 @@ a {
 .elevate {
   box-shadow: 12px 12px 24px 0 var(--shadow-color),
     -12px -12px 24px 0 var(--highlight-color);
+}
+.btn-elevate {
+	text-align: center;
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
 }
 .btn-elevate:active {
   box-shadow: none;
@@ -342,11 +350,22 @@ span.panel-divider hr {
 .input-form {
 	padding: 1em;
 }
+.confirmation-content {
+	padding: 2em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.confirmation-content .button-slot a {
+	margin-left: 0;
+}
 .text-input {
 	display: flex;
 	flex-direction: column;
 }
-.text-input input, .text-input textarea {
+.text-input input, .text-input textarea, .button-slot .btn-elevate {
 	border: 0;
 	padding: 0.5em;
 	margin: 0.5em 0;
@@ -409,7 +428,7 @@ span.panel-divider hr {
 		flex-direction: column;
 		justify-content: center;
 	}
-	.button-slot input {
+	.button-slot input, .button-slot .btn-elevate {
 		margin-left: 1em !important;
 	}
 	.button-slot .error-message {

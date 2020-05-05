@@ -1,5 +1,5 @@
 <?php
-	require("config.php");
+	require("./config/config.php");
 
 	// logged out
 	if (!isset($_SESSION["logged_in"]) || !$_SESSION["logged_in"])

@@ -1,6 +1,10 @@
+<?php
+	require("../config/config.php");
+?>
+
 <!DOCTYPE html>
 <html>
-<?php require('head.php')?>
+<?php require('../config/head.php')?>
 <body>
 	<?php require('header.php') ?>
 
