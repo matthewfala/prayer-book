@@ -10,6 +10,15 @@
 		exit();
 	}
 
+	// recover params from url
+	$page = (isset($_GET["page"]) && is_numeric($_GET["page"])) ? $_GET["page"] : 1;
+	$search = (isset($_GET["search"]) && !empty($_GET["search"])) ? $_GET["search"] : "";
+	$search_like = "%" . $search . "%";
+
+	// assess page limits
+	$limit_start = ($page - 1) * PRAYERS_PER_PAGE;
+	$limit_count = PRAYERS_PER_PAGE;
+
 	// count prayers
 	$sql = "
 	SELECT COUNT(prayer_id) AS count
@@ -35,8 +44,7 @@
 	{
 		$pages = ceil($count / PRAYERS_PER_PAGE);
 
-		// get page number
-		$page = (isset($_GET["page"]) && is_numeric($_GET["page"])) ? $_GET["page"] : 1;
+		
 
 		$sql = "
 		SELECT prayer_id, date, title, answer_date, circles.name AS circle_abbrev
@@ -44,13 +52,23 @@
 		LEFT JOIN circles
 			ON circles.circle_id = prayers.circle_id
 		WHERE user_id = " . $_SESSION["user_id"] . "
-		LIMIT " . ($page - 1) * PRAYERS_PER_PAGE . ", " . PRAYERS_PER_PAGE . ";";
+		AND (title LIKE ?)
+		LIMIT ?, ?;";
 
-		$page_results = $mysqli->query($sql);
-		if (!$page_results)
-		{
+		
+
+		$stmt = $mysqli->prepare($sql);
+
+		$stmt->bind_param("sii", $search_like, $limit_start, $limit_count);
+		if (!$stmt->execute()) {
 			echo $mysqli->error;
+			$mysqli->close();
 			exit();
+		}
+		$page_results = $stmt->get_result();
+		$search_empty = false;
+		if($page_results->num_rows == 0) {
+			$search_empty = true;
 		}
 	}
 
@@ -76,23 +94,10 @@
 				<div class="panel-content-header">
 					
 					<div class="search-bar-holder">
-						<ion-icon name="search-circle-outline"></ion-icon>
-		  				<input class="plastic depress" type="text" id="search-bar" name="search" placeholder="Search">
+						<ion-icon class="search-icon" name="search-circle-outline"></ion-icon>
+		  				<input class="plastic depress search-bar" type="text" id="search-bar" name="search" placeholder="Search">
 		  			</div>
-		  		
-					<div class="perpage-select">
-						<p>Showing </p>
-						<div class="text-input">
-							<select class="plastic depress">
-								<option value="5">5</option>
-								<option value="10">10</option>
-								<option value="20">20</option>
-								<option value="50">50</option>
-								<option value="100">100</option>
-							</select>
-						</div>
-						<p> prayers per page </p>
-					</div>
+		  	
 				</div>
 				<div class="prayers plastic elevate">
 					<table>
@@ -136,12 +141,29 @@
 						<span class="panel-divider"><hr/></span>
 					</div>
 				</div>
+				<div class="perpage-select">
+					<p>Showing </p>
+					<div class="text-input">
+						<select class="plastic depress">
+							<option value="5">5</option>
+							<option value="10">10</option>
+							<option value="20">20</option>
+							<option value="50">50</option>
+							<option value="100">100</option>
+						</select>
+					</div>
+					<p> prayers per page </p>
+				</div>
 
 
 			</div> <!-- #end .panel-content -->
 		</div>
 	</div>
-
+	<script>
+		document.querySelector("#search-bar").addEventListener("change", (e)=>{
+			window.location.href="?page=1&search=" + e.target.value
+		});
+	</script>
 	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>
 </html>

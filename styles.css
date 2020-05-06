@@ -14,6 +14,8 @@
 	--highlight-color: rgba(255, 255, 255, 0.5);
 	--shadow-color: rgba(0, 0, 0, 0.2);
 	--content-padding: 1.25em;
+	--search-size: 2em;
+	--depress-padding: 0.5em;
 }
 html {
 	height: 100%;
@@ -266,11 +268,24 @@ span.panel-divider hr {
 	margin-right: 1em;
 }
 .search-bar-holder {
-	flex: 1;
+	flex-grow: 1;
+	flex-direction: column;
+	align-items: stretch;
+	display: flex;
+	position: relative;
 }
-#search-bar {
-	width: 100%;
-	padding:;
+.search-bar {
+	position: relative;
+	flex: 1;
+	padding-left: calc(var(--search-size) + var(--depress-padding) * 2) !important;
+}
+.search-bar-holder .search-icon {
+	opacity: 75%;
+	position: absolute;
+	left: var(--depress-padding);
+	font-size: var(--search-size);
+	top: calc(var(--depress-padding) + 0.25em - var(--search-size)/7);
+	line-height: var(--search-size);
 }
 .prayer-section-title {
 	font-size: 1.5em;
@@ -412,9 +427,9 @@ span.panel-divider hr {
 	display: flex;
 	flex-direction: column;
 }
-.text-input input, .text-input select, .text-input textarea, .button-slot .btn-elevate, #search-bar {
+.text-input input, .text-input select, .text-input textarea, .button-slot .btn-elevate, .search-bar {
 	border: 0;
-	padding: 0.5em;
+	padding: var(--depress-padding);
 	margin: 0.5em 0;
 }
 .text-input textarea, .text-input select {
@@ -456,9 +471,12 @@ span.panel-divider hr {
 	box-shadow: none !important;
 }
 .perpage-select {
+	opacity: 50%;
+	margin-left: auto;
+	margin-right: auto;
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: flex-end;
 	max-width: 30%;
 	min-width: 10em;
