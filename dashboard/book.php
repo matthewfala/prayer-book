@@ -45,6 +45,17 @@
 	$row = $results->fetch_assoc();
 	$count = $row["count"];
 
+	// get persist tag
+	$persist_tag = "";
+	if (isset($_GET["page"]) && !empty($_GET["page"])) {
+		$persist_tag .= "page=" . $_GET["page"] . "&";
+	}
+	$search_on = false;
+	if (isset($_GET["search"]) && !empty($_GET["search"])) {
+		$persist_tag .= "search=" . $_GET["search"] . "&";
+		$search_on = true;
+	}
+
 	$dashboard_empty = false;
 	if ($count == 0)
 	{
@@ -131,7 +142,9 @@
 								</thead>
 								<tbody class="plastic depress">
 									<?php while($row = $page_results->fetch_assoc()): ?>
-										<tr id="<?php echo "prayer-" . $row["prayer_id"]?>" class="prayer-row" onclick="window.location='viewprayer.php?prayer_id=<?php echo $row["prayer_id"] ?>';">
+										<tr id="<?php echo "prayer-" . $row["prayer_id"]?>" class="prayer-row" onclick="window.location.href='viewprayer.php?<?php 
+											echo $persist_tag . "prayer_id=" . $row["prayer_id"];
+											?>';">
 											<td><?php echo $row["date"] ?></td>
 											<td><?php echo $row["title"] ?></td>
 											<td>
@@ -153,7 +166,12 @@
 									Page: 
 									<?php for ($pageNum = 1; $pageNum <= $pages; ++$pageNum): ?>
 										<?php if ($pageNum == $page): ?><span class="link-hgt"><?php endif;?>
-										<a href="?page=<?php echo $pageNum ?>"><?php echo $pageNum ?><?php if ($pageNum == $page): ?></span><?php endif;?></a><?php if ($pageNum != $pages): ?>,
+										<a href="?page=<?php
+										echo $pageNum;
+										if ($search_on) {
+											echo "&search=" . $search;
+										}
+										?>"><?php echo $pageNum ?><?php if ($pageNum == $page): ?></span><?php endif;?></a><?php if ($pageNum != $pages): ?>,
 										<?php endif; ?>
 									<?php endfor; ?>
 								</div>

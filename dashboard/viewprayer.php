@@ -1,4 +1,47 @@
+<?php
+require '../config/config.php';
 
+if ( !isset($_GET['prayer_id']) || empty($_GET['prayer_id']) || !is_numeric($_GET['prayer_id']))
+{
+	$error = "Invalid prayer id. Please go back and select prayer again.";
+}
+
+else {
+	// Store user in the database!!!
+	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	if ($mysqli->connect_errno) {
+		echo $mysqli->connect_error;
+		$mysqli->close();
+		exit();
+	}
+
+	$sql = "
+	SELECT date, answer_date, title, description, answer_description, circles.name
+	FROM prayers
+	LEFT JOIN details
+		ON prayers.detail_id = details.detail_id
+	LEFT JOIN circles
+		ON prayers.circle_id = circles.circle_id
+	WHERE prayer_id = ? AND user_id = " . $_SESSION["user_id"] . ";";
+
+	$stmt = $mysqli->prepare($sql);
+	$stmt->bind_param("i", $_GET['prayer_id']);
+
+	if (!$stmt->execute()) {
+		echo "Server error. Please try again.";
+		$mysqli->close();
+		exit();
+	}
+	if ($stmt->num_rows != 0) {
+		$error = "Invalid prayer id. It seems like this is someone else's prayer.";
+	}
+	else {
+		$res = $stmt->get_result();
+		$row = $res->fetch_assoc();
+	}
+	$mysqli->close();
+}
+?>
 <!DOCTYPE html>
 <html>
 <?php require('../config/head.php')?>
@@ -9,24 +52,75 @@
 
 		<div class="panel">
 			<div class="panel-header">
-				<h1>Prayer Title</h1>
+				<?php if (isset($error)): ?>
+					<h1>Error</h1>
+				<?php else: ?>
+					<h1><?php echo $row["title"]?></h1>
+				<?php endif; ?>
 				<div class="panel-button plastic elevate minus-button btn-elevate"><p>-</p></div>
 			</div>
 			<span class="panel-divider"><hr/></span>
 
 			<div class="panel-content">
-				<div class="prayer-content">
-					<h3 class="content-title">Description</h3>
-					<p class="content-text">Lorem ip-sum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-				</div>
+				<?php if(isset($error)): ?>
+					<h3 class="content-title"><?php echo $error ?></h3>
 
-				<div class="content">
-					<h3 class="content-title">Answered: March 12, 2020</h3>
-					<p class="content-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-				</div>
+				<?php else: ?>
+					<div class="prayer-content">
+						<h3 class="content-title">Prayer: <?php 
+						$date = new DateTime($row["date"]);
+						echo $date->format("F d, Y")
+						?></h3>
+						<p class="content-text"><?php if (isset($row["description"]) && !empty($row["description"])) echo $row["description"]?></p>
+					</div>
+
+					<?php if((isset($row["answer_date"]) && !empty($row["answer_date"]))
+						|| (isset($row["answer_description"]) && !empty($row["answer_description"]))): ?>
+						<div class="prayer-content">
+							<h3 class="content-title">
+								<?php
+								if (isset($row["answer_date"]) && !empty($row["answer_date"])){
+
+									$date_ans = new DateTime($row["answer_date"]);
+									echo "Answered: " .  $date_ans->format("F d, Y");
+								}
+								?>
+							</h3>
+							<p class="content-text">
+								<?php if (isset($row["answer_description"]) && !empty($row["answer_description"])) echo $row["answer_description"]?>
+							</p>
+						</div>
+					<?php endif; ?>
+				<? endif; ?>
 
 				<div class="button-pack">
-					<button id="back-button" class="glazed-plastic plastic elevate btn-elevate content-button">Back</button>
+					<?php 
+						$backurl = "../dashboard/";
+						$backurl .= ($_SESSION["view_mode"] == "all") ? "book.php" : "book_recent.php";
+
+						if ($_SESSION["view_mode"] == "all")
+						{
+							if (isset($_GET["page"]) || isset($_GET["search"]))
+							{
+								$backurl .= "?";
+							}
+
+							if (isset($_GET["page"])) {
+								$backurl .= "page=" . $_GET["page"];
+								if (isset($_GET["search"]))
+								{
+									$backurl .= "&";
+								}
+							}
+
+							if (isset($_GET["search"])) {
+								$backurl .= "search=" . $_GET["search"];
+							}
+						}
+
+						$backurl .= "#prayer-" . $_GET["prayer_id"];
+					?>
+					<button onclick="window.location.href='<?php echo $backurl ?>'" id="back-button" class="glazed-plastic plastic elevate btn-elevate content-button">Back</button>
 					<button id="edit-button" class="glazed-plastic plastic elevate btn-elevate content-button">Edit</button>
 				</div>
 			</div>
