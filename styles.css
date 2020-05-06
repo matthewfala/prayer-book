@@ -13,6 +13,7 @@
 	--panel-divider-height: 10px;
 	--highlight-color: rgba(255, 255, 255, 0.5);
 	--shadow-color: rgba(0, 0, 0, 0.2);
+	--content-padding: 1.25em;
 }
 html {
 	height: 100%;
@@ -21,10 +22,12 @@ body {
 	margin: 0;
 	padding: 0;
 	background-color: var(--background-color);/*#e5e7ea;*/
-	font-family: 'Raleway', sans-serif;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+}
+body, textarea {
+	font-family: 'Raleway', sans-serif;
 }
 img {
 	width: 100%;
@@ -33,18 +36,24 @@ a {
 	text-decoration: none;
 }
 .mega-image {
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./images/prayer_banner.jpg');
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/prayer_banner.jpg');
 	min-height: 10em;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
 }
+.dashboard-image {
+	align-self: stretch;
+	border-radius: 0.3em;
+	margin-left: var(--content-padding);
+	margin-right: var(--content-padding);
+}
 #header {
 	z-index: 100;
 	position: -webkit-sticky; /* Safari */
-	  position: sticky;
-	  top: 0;
+	position: sticky;
+	top: 0;
 	font-size: 12px;
 	padding: 1em 2em;
 	display: flex;
@@ -178,6 +187,7 @@ a {
 	flex-direction: column;
 	align-items: stretch;
 	flex: 1;
+
 }
 .panel {
 	height: 100%;
@@ -213,8 +223,8 @@ a {
 	overflow-y: scroll;
 	font-size: 0.75em;
 	color: var(--text-primary-color);
-	padding-left: 1.25em;
-	padding-right: 1.25em;
+	padding-left: var(--content-padding);
+	padding-right: var(--content-padding);
 }
 .wide-content {
 	box-sizing: border-box;
@@ -249,6 +259,19 @@ span.panel-divider hr {
 	box-shadow: 0 20px 20px -20px rgba(0,0,0,.1);
 	margin: -50px auto var(--panel-divider-height); 
 }
+.panel-content-header {
+	display: flex;
+	align-items: center;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+.search-bar-holder {
+	flex: 1;
+}
+#search-bar {
+	width: 100%;
+	padding:;
+}
 .prayer-section-title {
 	font-size: 1.5em;
 	margin-left: 1em;
@@ -256,7 +279,7 @@ span.panel-divider hr {
 .prayers {
 	padding: 1em;
 	padding-top: 2em;
-	margin-bottom: 4em;
+	margin-bottom: 2.5em;
 	font-size: 12px;
 	/*overflow-x: scroll;*/
 }
@@ -326,6 +349,30 @@ span.panel-divider hr {
 	width: 10%;
 	margin-right: 5%;
 }
+.centered {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.page-links {
+	text-align: center;
+	color: var(--primary-shade);
+	font-size: 1.15em;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.page-links .links {
+	padding-left: 2em;
+	padding-right: 2em;
+	padding-bottom: 0.25em;
+}
+.page-links .links .link-hgt a {
+	color: var(--glazed-color);
+}
+.page-links .links a {
+	color: var(--primary-shade);
+}
 .container {
 	box-sizing: border-box;
 	z-index: 5;
@@ -365,10 +412,13 @@ span.panel-divider hr {
 	display: flex;
 	flex-direction: column;
 }
-.text-input input, .text-input textarea, .button-slot .btn-elevate {
+.text-input input, .text-input select, .text-input textarea, .button-slot .btn-elevate, #search-bar {
 	border: 0;
 	padding: 0.5em;
 	margin: 0.5em 0;
+}
+.text-input textarea, .text-input select {
+	font-size: 1em;
 }
 .text-input {
 	padding-top: 0.5em;
@@ -380,6 +430,10 @@ span.panel-divider hr {
 	border: 0;
 	padding: 0.5em 1em;
 	margin-left: 0;
+	display: inline-block;
+}
+.link-form-button {
+	font-size: 1.15em;
 }
 .error-message {
 	margin-top: 0;
@@ -396,6 +450,30 @@ span.panel-divider hr {
 	padding-left: 1.5em;
 	padding-right: 1.5em;
 	margin: 1.5em 2em;
+}
+.add-prayer {
+	border: 0 !important;
+	box-shadow: none !important;
+}
+.perpage-select {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: flex-end;
+	max-width: 30%;
+	min-width: 10em;
+	flex-wrap: wrap;
+	text-align: right;
+}
+.perpage-select p {
+	margin: 0 0.5em;
+	padding: 0;
+	padding-bottom: 0.75em;
+}
+.perpage-select select {
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	font-size: 0.75em;
 }
 @media(min-width: 768px)
 {

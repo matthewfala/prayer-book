@@ -9,12 +9,24 @@
 
 	// logged in
 	else {
-		if (!isset($_SESSION["view_mode"]) || ($_SESSION["view_mode"]) == "all")
+
+		// switch mode
+		if (isset($_GET["change_mode"]) && ($_GET["change_mode"] == "all"	|| $_GET["change_mode"] == "recent"))
+		{
+			$_SESSION["view_mode"] = $_GET["change_mode"];
+		}
+
+		// resolve mode
+		if (!isset($_SESSION["view_mode"]))
+		{
+			$_SESSION["view_mode"] = "all";
+		}
+
+		if ($_SESSION["view_mode"] == "all")
 		{
 			header("Location: ./dashboard/book.php");
 		}
-		else
-		{
+		else {
 			header("Location: ./dashboard/book_recent.php");
 		}
 	}

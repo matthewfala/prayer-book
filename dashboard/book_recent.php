@@ -1,5 +1,6 @@
 <?php
-	require("../config/config.php");
+	require "../config/config.php";
+	require "../config/dashguard.php";
 ?>
 
 <!DOCTYPE html>
@@ -9,9 +10,7 @@
 	<?php require('header.php') ?>
 
 	<div class="dashboard">
-		<?php require('viewbar.php');
-			ViewBar(false);
-		?>
+		<?php require('viewbar.php') ?>
 
 		<div class="panel">
 			<div class="panel-header">

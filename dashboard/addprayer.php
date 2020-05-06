@@ -9,30 +9,33 @@
 	<?php require('header.php') ?>
 
 	<div class="dashboard">
-		<?php require('viewbar.php');
-			ViewBar(true);
-		?>
+		<?php require('viewbar.php');?>
 
-		<div class="panel">
-			<div class="mega-image"></div>
-			<div class="container addprayer">
-				<h3 class="title">Add Prayer</h3>
-				<span class="panel-divider"><hr/></span>
-				<form class="input-form plastic elevate">
+		<div class="panel add-prayer">
+			<div class="panel-header">
+				<h1>Add Prayer</h1>
+			</div>
+			<span class="panel-divider"><hr/></span>
+			<div class="panel-content wide-content">
+				<form action="addprayer_confirmation.php" method="post" class="input-form plastic elevate">
 					<div class="text-package">
 						<div class="text-input">
 							<label for="title">Title</label>
 				  			<input class="plastic depress" type="text" id="title" name="title" placeholder="title"><br><br>
 						</div>
 						<div class="text-input">
-							<label for="Date">Date</label>
+							<label for="date">Date</label>
 				  			<input class="plastic depress" type="text" id="date" name="date" placeholder="date"><br><br>
 						</div>
 					</div>
 					<div class="text-package">
 						<div class="text-input">
 							<label for="sphere">Sphere</label>
-				  			<input class="plastic depress" type="text" id="sphere" name="sphere" placeholder="sphere"><br><br>
+				  			<select class="plastic depress" id="sphere" name="sphere" placeholder="sphere">
+				  				<option value="1" selected>Myself</option>
+				  				<option value="2">Family</option>
+				  				<option value="3">Church</option>
+				  			</select><br><br>
 						</div>
 						<div class="text-input">
 							<label for="decription">Description</label>
@@ -42,12 +45,17 @@
 					<div class="button-slot">
 						<input type="submit" value="Log Prayer" class="glazed-plastic plastic elevate btn-elevate">
 						<p class="error-message">Error message</p>
-						<input type="submit" value="Back" class="glazed-plastic plastic elevate btn-elevate">
+						<a href="../index.php" class="link-form-button glazed-plastic plastic elevate btn-elevate">Back</a>
 					</div>
 				</form>
-			</div> <!-- end of container -->
+				<br/>
+				<div class="mega-image dashboard-image"></div>
+
+			</div>
 
 		</div>
 	</div>
+	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+
 </body>
 </html>
