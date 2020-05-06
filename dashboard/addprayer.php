@@ -25,7 +25,7 @@
 						</div>
 						<div class="text-input">
 							<label for="date">Date</label>
-				  			<input class="plastic depress" type="text" id="date" name="date" placeholder="date"><br><br>
+				  			<input class="plastic depress" type="date" value="<?php echo date("Y-m-d") ?>" id="date" name="date" placeholder="date"><br><br>
 						</div>
 					</div>
 					<div class="text-package">

@@ -118,7 +118,9 @@ else {
 							}
 						}
 
-						$backurl .= "#prayer-" . $_GET["prayer_id"];
+						if (isset($_GET["prayer_id"]) && !empty($_GET["prayer_id"])) {
+							$backurl .= "#prayer-" . $_GET["prayer_id"];
+						}
 					?>
 					<button onclick="window.location.href='<?php echo $backurl ?>'" id="back-button" class="glazed-plastic plastic elevate btn-elevate content-button">Back</button>
 					<button id="edit-button" class="glazed-plastic plastic elevate btn-elevate content-button">Edit</button>

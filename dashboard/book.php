@@ -77,6 +77,7 @@
 			ON circles.circle_id = prayers.circle_id
 		WHERE user_id = " . $_SESSION["user_id"] . "
 		AND (title LIKE ?)
+		ORDER BY date ASC
 		LIMIT ?, ?;";
 
 		$stmt = $mysqli->prepare($sql);
@@ -145,7 +146,10 @@
 										<tr id="<?php echo "prayer-" . $row["prayer_id"]?>" class="prayer-row" onclick="window.location.href='viewprayer.php?<?php 
 											echo $persist_tag . "prayer_id=" . $row["prayer_id"];
 											?>';">
-											<td><?php echo $row["date"] ?></td>
+											<td><?php 
+												$date_form = new DateTime($row["date"]);
+												echo $date_form->format("n/j/Y")
+											?></td>
 											<td><?php echo $row["title"] ?></td>
 											<td>
 												<?php if($row["answer_date"] == NULL): ?>

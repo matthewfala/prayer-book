@@ -28,7 +28,7 @@ body {
 	display: flex;
 	flex-direction: column;
 }
-body, textarea {
+body, textarea, input, select {
 	font-family: 'Raleway', sans-serif;
 }
 img {
@@ -433,7 +433,7 @@ span.panel-divider hr {
 	margin: 0.5em 0;
 }
 .text-input textarea, .text-input select {
-	font-size: 1em;
+	font-size: 1.05em;
 }
 .text-input {
 	padding-top: 0.5em;
