@@ -197,6 +197,7 @@
 
 				<?php endif ?> <!-- Not dashboard empty !-->
 			</div> <!-- #end .panel-content -->
+			<?php require "../config/widgets.php" ?>
 		</div>
 	</div>
 	<script>

@@ -125,9 +125,9 @@
 				<?php endforeach; ?>
 				<!-- end of prayers -->
 			</div> <!-- #end .panel-content -->
+			<?php require "../config/widgets.php" ?>
 		</div>
 	</div>
-
 	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>
 </html>
