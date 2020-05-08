@@ -1,5 +1,6 @@
 <?php
 require '../config/config.php';
+require "../config/dashguard.php";
 
 if ( !isset($_GET['prayer_id']) || empty($_GET['prayer_id']) || !is_numeric($_GET['prayer_id']))
 {

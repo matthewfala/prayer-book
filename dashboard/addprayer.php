@@ -1,5 +1,6 @@
 <?php
 	require("../config/config.php");
+	require "../config/dashguard.php";
 ?>
 
 <!DOCTYPE html>
