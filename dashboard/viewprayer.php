@@ -172,9 +172,29 @@ else {
 			<?php if (isset($_GET["edit_success"]) && $_GET["edit_success"] == "true"): ?>
 				<div class="toast">Successfully edited prayer</div>
 			<?php endif; ?>
+			<div class="neu-popup">
+				<div class="neu-popup-content">
+					<h1>Are you sure you would like to delete this prayer?</h1>
+					<div class="button-pack">
+						<button onclick="window.location.href='<?php echo "../index.php?delete_prayer" . GenerateRecoveryURL_and() . "&prayer_id=" . $_GET["prayer_id"] ?>'" class="glazed-plastic plastic elevate btn-elevate content-button">Yes</button>
+						<button onclick="exitPopup();" class="neu-popup-no glazed-plastic plastic elevate btn-elevate content-button">No</button>
+					</div>
+				</div>
+			</div>
 		</div> <!-- #end .panel -->
 	</div>
 
+	<script type="text/javascript">
+		let popup = document.querySelector(".neu-popup");
+
+		function enterPopup() {
+			popup.classList.add("neu-popup-visible");
+		}
+		function exitPopup() {
+			popup.classList.remove("neu-popup-visible");
+		}
+
+	</script>
 	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>
 </html>
