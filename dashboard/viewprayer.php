@@ -169,8 +169,12 @@ else {
 					<?php endif; ?>
 				</div>
 			</div>
-		</div>
+			<?php if (isset($_GET["edit_success"]) && $_GET["edit_success"] == "true"): ?>
+				<div class="toast">Successfully edited prayer</div>
+			<?php endif; ?>
+		</div> <!-- #end .panel -->
 	</div>
+
 	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>
 </html>
