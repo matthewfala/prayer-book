@@ -22,9 +22,9 @@ else {
 			&& isset($_POST["date"]) && !empty($_POST["date"])
 			&& isset($_POST["sphere"]) && !empty($_POST["sphere"]))
 		{
-			$answer_date_set = isset($_POST["answer_date"]) && !empty($_POST["answer_date"]) ? $_POST["answer_date"] : NULL;
-			$answer_date_set = isset($_POST["answer"]) && !empty($_POST["answer"]) ? $_POST["answer"] : NULL;
-			$answer_date_set = isset($_POST["description"]) && !empty($_POST["description"]) ? $_POST["description"] : NULL;
+			$answer_date_set = isset($_POST["answer_date"]) && !empty($_POST["answer_date"] && $_POST["answer_date"] != "0000-00-00") ? $_POST["answer_date"] : NULL;
+			$answer_set = isset($_POST["answer"]) && !empty($_POST["answer"]) ? $_POST["answer"] : NULL;
+			$description_set = isset($_POST["description"]) && !empty($_POST["description"]) ? $_POST["description"] : NULL;
 
 			$sql = "
 			UPDATE prayers
@@ -33,7 +33,7 @@ else {
 			";
 
 			$stmt = $mysqli->prepare($sql);
-			$stmt->bind_param("sssiii", $_POST["date"], $_POST["answer_date"], $_POST["title"], $_POST["sphere"], $_SESSION["user_id"], $_GET["prayer_id"]);
+			$stmt->bind_param("sssiii", $_POST["date"], $answer_date_set, $_POST["title"], $_POST["sphere"], $_SESSION["user_id"], $_GET["prayer_id"]);
 
 			if (!$stmt->execute()) {
 				echo "Server error. Please try again.";
@@ -50,7 +50,7 @@ else {
 			";
 
 			$stmt = $mysqli->prepare($sql);
-			$stmt->bind_param("ssii", $_POST["description"], $_POST["answer"], $_SESSION["user_id"], $_GET["prayer_id"]);
+			$stmt->bind_param("ssii", $description_set, $answer_set, $_SESSION["user_id"], $_GET["prayer_id"]);
 
 			if (!$stmt->execute()) {
 				echo "Server error. Please try again.";
