@@ -77,7 +77,7 @@
 			ON circles.circle_id = prayers.circle_id
 		WHERE user_id = " . $_SESSION["user_id"] . "
 		AND (title LIKE ?)
-		ORDER BY date DESC
+		ORDER BY date DESC, prayer_id DESC
 		LIMIT ?, ?;";
 
 		$stmt = $mysqli->prepare($sql);

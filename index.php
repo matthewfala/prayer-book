@@ -5,6 +5,7 @@
 	if (!isset($_SESSION["logged_in"]) || !$_SESSION["logged_in"])
 	{
 		header("Location: ./login/login.php");
+		exit();
 	}
 
 	// logged in
@@ -24,11 +25,55 @@
 
 		if ($_SESSION["view_mode"] == "all")
 		{
-			header("Location: ./dashboard/book.php");
+			$baseheader = "Location: ./dashboard/book.php";
 		}
 		else {
-			header("Location: ./dashboard/book_recent.php");
+			$baseheader = "Location: ./dashboard/book_recent.php";
 		}
+
+		//	window.location.href = "<?php echo "../index.php?delete_prayer" . GenerateRecoveryURL_and() . "&prayer_id=" . $_GET["prayer_id"] ";
+
+		// delete prayer
+		if (isset($_GET["delete_prayer"]) && $_GET["delete_prayer"] == "true") {
+			if (isset($_GET["prayer_id"]) && is_numeric($_GET["prayer_id"])) {
+
+				// connect to db
+				$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+				if ($mysqli->connect_errno) {
+					echo $mysqli->connect_error;
+					$mysqli->close();
+					exit();
+				}
+
+				$sql = "
+				DELETE details
+				FROM details
+				INNER JOIN prayers
+					ON details.detail_id = prayers.detail_id
+				WHERE user_id=? AND prayer_id=?;
+				";
+
+				$stmt = $mysqli->prepare($sql);
+				$stmt->bind_param("ii", $_SESSION["user_id"], $_GET["prayer_id"]);
+
+				if (!$stmt->execute()) {
+					$mysqli->close();
+					header($baseheader . "?delete_success=false" . GenerateRecoveryURL_and());
+					exit();
+				}
+
+				if ($mysqli->affected_rows == 0) {
+					$mysqli->close();
+					header($baseheader . "?delete_success=false" . GenerateRecoveryURL_and());
+					exit();
+				}
+				$mysqli->close();
+				header($baseheader . "?delete_success=true" . GenerateRecoveryURL_and());
+				exit();
+			}
+		}
+		header($baseheader);
+		exit();
 	}
 ?>
 <!DOCTYPE html>
