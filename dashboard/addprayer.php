@@ -2,7 +2,29 @@
 	require("../config/config.php");
 	require "../config/dashguard.php";
 ?>
+<?php
+	// connect to db
+	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	if ($mysqli->connect_errno) {
+		echo $mysqli->connect_error;
+		$mysqli->close();
+		exit();
+	}
 
+	// get circles
+	$stmt = $mysqli->prepare("
+			SELECT circle_id, name
+			FROM circles
+			ORDER BY priority ASC;
+		");
+	
+	if (!$stmt->execute()) {
+		echo $mysqli->error();
+		$mysqli->close();
+		exit();
+	}
+	$circles = $stmt->get_result();
+?>
 <!DOCTYPE html>
 <html>
 <?php require('../config/head.php')?>
@@ -11,7 +33,6 @@
 
 	<div class="dashboard">
 		<?php require('viewbar.php');?>
-
 		<div class="panel add-prayer">
 			<div class="panel-header">
 				<h1>Add Prayer</h1>
@@ -33,9 +54,9 @@
 						<div class="text-input">
 							<label for="sphere">Sphere</label>
 				  			<select class="plastic depress" id="sphere" name="sphere" placeholder="sphere">
-				  				<option value="1" selected>Myself</option>
-				  				<option value="2">Family</option>
-				  				<option value="3">Church</option>
+				  				<?php while($circle = $circles->fetch_assoc()): ?>
+					  					<option value="<?php echo $circle["circle_id"]?>" <?php if($circle["circle_id"] == 1) echo "selected" ?>><?php echo $circle["name"]?></option>
+					  				<?php endwhile; ?>
 				  			</select><br><br>
 						</div>
 						<div class="text-input">
@@ -52,9 +73,8 @@
 				<br/>
 				<div class="mega-image dashboard-image"></div>
 
-			</div>
-
-		</div>
+			</div> <!-- #end .panel-content -->
+		</div> <!-- #end .panel -->
 	</div>
 	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 

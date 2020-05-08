@@ -530,6 +530,10 @@ span.panel-divider hr {
 	.button-slot .error-message {
 		align-self: center;
 	}
+	.edit-button-slot {
+		padding-top: 1.5em !important;
+		justify-content: flex-start !important;
+	}
 	.button-pack {
 		justify-content: flex-end;
 	}
