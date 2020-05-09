@@ -135,10 +135,12 @@
 							<table>
 								<thead>
 									<tr>
+										<th class="th-padding"></th>
 										<th class="th-date">Date</th>
 										<th class="th-desc">Title</th>
 										<th class="th-ans">Ans.</th>
 										<th class="th-cir"><ion-icon name="list-circle-outline"></ion-icon></th>
+										<th class="th-padding"></th>
 									</tr>
 								</thead>
 								<tbody class="plastic depress">
@@ -146,19 +148,21 @@
 										<tr id="<?php echo "prayer-" . $row["prayer_id"]?>" class="prayer-row" onclick="window.location.href='viewprayer.php?<?php 
 											echo $persist_tag . "prayer_id=" . $row["prayer_id"];
 											?>';">
-											<td><?php 
+											<td class="padding-cell"></td>
+											<td class="underline-cell"><?php 
 												$date_form = new DateTime($row["date"]);
 												echo $date_form->format("n/j/Y")
 											?></td>
-											<td><?php echo $row["title"] ?></td>
-											<td>
+											<td class="underline-cell"><?php echo $row["title"] ?></td>
+											<td class="underline-cell">
 												<?php if($row["answer_date"] == NULL): ?>
 													<ion-icon name="square-outline" class="check"></ion-icon>
 												<?php else: ?>
 													<ion-icon name="checkbox-outline"></ion-icon>
 												<? endif; ?>
 											</td>
-											<td><div class="right-cell"><?php echo $row["circle_abbrev"] ?></div></td>
+											<td class="underline-cell"><div class="right-cell"><?php echo $row["circle_abbrev"] ?></div></td>
+											<td class="padding-cell"></td>
 										</tr>
 									<?php endwhile; ?>
 								</tbody>
