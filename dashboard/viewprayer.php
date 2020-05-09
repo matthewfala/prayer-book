@@ -60,13 +60,16 @@ else {
 
 			if ($not_updated && $mysqli->affected_rows == 0) {
 				header("Location: editprayer.php?prayer_id=" . $_GET['prayer_id'] . "&edit_error=true" . GenerateRecoveryURL_and());
+				exit();
 			}
 
 			// redirect to self
 			header("Location: ?prayer_id=" . $_GET['prayer_id'] . "&edit_success=true" . GenerateRecoveryURL_and());
+			exit();
 		}
 		else {
 			header("Location: editprayer.php?prayer_id=" . $_GET['prayer_id'] . "&edit_error=true" . GenerateRecoveryURL_and());
+			exit();
 		}
 	}
 
@@ -156,7 +159,7 @@ else {
 							</div>
 						</div> <!-- #end .content-area -->
 					<?php endif; ?>
-				<? endif; ?>
+				<?php endif; ?>
 
 				<div class="button-pack">
 					<?php

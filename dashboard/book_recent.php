@@ -116,7 +116,7 @@
 													<ion-icon name="square-outline" class="check"></ion-icon>
 												<?php else: ?>
 													<ion-icon name="checkbox-outline"></ion-icon>
-												<? endif; ?>
+												<?php endif; ?>
 											</td>
 										</tr>
 									<?php endforeach; ?>

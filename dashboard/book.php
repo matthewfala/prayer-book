@@ -135,12 +135,10 @@
 							<table>
 								<thead>
 									<tr>
-										<th class="th-padding"></th>
 										<th class="th-date">Date</th>
 										<th class="th-desc">Title</th>
 										<th class="th-ans">Ans.</th>
 										<th class="th-cir"><ion-icon name="list-circle-outline"></ion-icon></th>
-										<th class="th-padding"></th>
 									</tr>
 								</thead>
 								<tbody class="plastic depress">
@@ -148,21 +146,19 @@
 										<tr id="<?php echo "prayer-" . $row["prayer_id"]?>" class="prayer-row" onclick="window.location.href='viewprayer.php?<?php 
 											echo $persist_tag . "prayer_id=" . $row["prayer_id"];
 											?>';">
-											<td class="padding-cell"></td>
-											<td class="underline-cell"><?php 
+											<td><?php 
 												$date_form = new DateTime($row["date"]);
-												echo $date_form->format("n/j/Y")
+												echo $date_form->format("n/j/Y");
 											?></td>
-											<td class="underline-cell"><?php echo $row["title"] ?></td>
-											<td class="underline-cell">
+											<td><?php echo $row["title"] ?></td>
+											<td>
 												<?php if($row["answer_date"] == NULL): ?>
 													<ion-icon name="square-outline" class="check"></ion-icon>
 												<?php else: ?>
 													<ion-icon name="checkbox-outline"></ion-icon>
-												<? endif; ?>
+												<?php endif; ?>
 											</td>
-											<td class="underline-cell"><div class="right-cell"><?php echo $row["circle_abbrev"] ?></div></td>
-											<td class="padding-cell"></td>
+											<td><div class="right-cell"><?php echo $row["circle_abbrev"] ?></div></td>
 										</tr>
 									<?php endwhile; ?>
 								</tbody>
@@ -191,7 +187,7 @@
 						<p>Showing </p>
 						<div class="text-input">
 							<select id="perpage-select" class="plastic depress">
-								<? foreach (PERPAGE_OPTIONS as $val): ?>
+								<?php foreach (PERPAGE_OPTIONS as $val): ?>
 									<option value="<?php echo $val?>" <?php if ($val==$perpage) echo "selected"?>><?php echo $val?></option>
 								<?php endforeach; ?>
 							</select>

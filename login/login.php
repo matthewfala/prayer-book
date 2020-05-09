@@ -38,6 +38,7 @@ if (isset($_POST['email']) && !empty($_POST['email'])
 		$_SESSION["user_name"] = $row["name"];
 		$_SESSION["user_email"] = $row["email"];
 		header("Location: ../index.php");
+		exit();
 	}
 	else {
 		$error = "Incorrect username or password.";

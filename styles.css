@@ -57,7 +57,7 @@ a {
 	text-decoration: none;
 }
 .mega-image {
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/prayer_banner.jpg');
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./images/prayer_banner.jpg');
 	min-height: 10em;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -381,21 +381,6 @@ span.panel-divider hr {
   bottom: 0;
   left: calc((2em)/2);
 }
-.underline-cell {
-	border-bottom: rgba(0,0,0,0.1) solid 1px;
-}
-/*
-.prayers tbody tr:after {
-  content: '';
-  width: calc(100% - 2em);
-  height: 1px;
-  border-radius: 0.5px;
-  background: rgba(0,0,0,0.1);
-  position: absolute;
-  bottom: 0;
-  left: calc((2em)/2);
-}
-*/
 .prayer-row:hover {
 	background-color: rgba(0,0,0,0.05);
 }
@@ -404,11 +389,12 @@ span.panel-divider hr {
 	vertical-align: middle;
 }
 .prayers .th-date {
+	margin-left: 5%;
 	width: 30%;
 	border-right: solid rgba(0,0,0,0.3) 1px;
 }
 .prayers .th-desc {
-	width: 50%;
+	width: 45%;
 	border-right: solid rgba(0,0,0,0.3) 1px;
 }
 .prayers .th-ans {
@@ -416,9 +402,7 @@ span.panel-divider hr {
 }
 .prayers .th-circ {
 	width: 10%;
-}
-.prayers .th-padding {
-	width: 1em;
+	margin-right: 5%;
 }
 .centered {
 	display: flex;
