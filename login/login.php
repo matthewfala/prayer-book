@@ -59,26 +59,25 @@ if (isset($_POST['email']) && !empty($_POST['email'])
 		<h3 class="title">Login</h3>
 		<span class="panel-divider"><hr/></span>
 
-		<form action="#" method="POST" class="input-form plastic elevate">
+		<form action="#" method="POST" class="validate-submit input-form plastic elevate">
 			<div class="text-package">
 				<div class="text-input">
 					<label for="email">Email</label>
-		  			<input class="plastic depress" type="text" id="email" name="email" placeholder="email">
+		  			<input class="required-input plastic depress" type="text" id="email" name="email" placeholder="email">
 				</div>
 			</div>
 			<div class="text-package">
 				<div class="text-input">
 					<label for="password">Password</label>
-		  			<input class="plastic depress" type="password" id="password" name="password" placeholder="password">
+		  			<input class="required-input plastic depress" type="password" id="password" name="password" placeholder="password">
 				</div>
 			</div>
 			<div class="button-slot">
 				<input type="submit" value="Login" class="glazed-plastic plastic elevate btn-elevate">
-				<?php if (isset($error)): ?>
-					<p class="error-message"><?php echo $error ?></p>
-				<?php endif; ?>
+				<p class="error-message <?php if (!isset($error)): ?>error-hidden<?php endif; ?>"><?php echo $error ?></p>
 			</div>
 		</form>
 	</div>
+	<script src="../config/validator.js"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@
 
 	// Get spheres
 	$sql = "
-		SELECT circle_id, name, priority
+		SELECT circle_id, name, priority, abbreviation
 		FROM circles
 		ORDER BY priority ASC;
 	";
@@ -54,12 +54,14 @@
 			array_push($prayerCircles, array(
 				"circle_empty" => true,
 				"circle_name" => $circle_row["name"],
+				"circle_abb" => $circle_row["abbreviation"]
 			));
 		}
 		else {
 			$circle = array(
 				"circle_empty" => false,
 				"circle_name" => $circle_row["name"],
+				"circle_abb" => $circle_row["abbreviation"],
 				"contents" => array(),
 			);
 
@@ -89,7 +91,7 @@
 			<span class="panel-divider"><hr/></span>
 			<div class="panel-content wide-content">
 				<?php foreach($prayerCircles as $circ): ?>
-					<h3 class="prayer-section-title">Prayers for: <?php echo $circ["circle_name"] ?></h3>
+					<h3 class="prayer-section-title">Prayers for: <?php echo $circ["circle_name"] . " ~ " . $circ["circle_abb"] ?></h3>
 					<?php if ($circ["circle_empty"]): ?>
 						<span class="panel-divider"><hr/></span>
 					<?php else: ?>

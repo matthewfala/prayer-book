@@ -71,7 +71,7 @@
 		$limit_count = $perpage;
 
 		$sql = "
-		SELECT prayer_id, date, title, answer_date, circles.name AS circle_abbrev
+		SELECT prayer_id, date, title, answer_date, circles.abbreviation AS circle_abbrev
 		FROM prayers
 		LEFT JOIN circles
 			ON circles.circle_id = prayers.circle_id
@@ -201,17 +201,22 @@
 		</div>
 	</div>
 	<script>
-		document.querySelector("#search-bar").addEventListener("change", (e)=>{
-			window.location.href="?page=1&search=" + e.target.value
-		});
 
-		document.querySelector("#perpage-select").addEventListener("change", (e)=>{
-			window.location.href="?perpage="
-			+ e.target.value
-			+ "&page=<?php
-				echo $page . (isset($_GET["search"]) ? "search=".$search : "")
-				?>"
-		});
+		if (document.querySelector("#search-bar")) {
+			document.querySelector("#search-bar").addEventListener("change", (e)=>{
+				window.location.href="?page=1&search=" + e.target.value;
+			});
+		}
+
+		if (document.querySelector("#perpage-select")) {
+			document.querySelector("#perpage-select").addEventListener("change", (e)=>{
+				window.location.href="?perpage="
+				+ e.target.value
+				+ "&page=<?php
+					echo $page . (isset($_GET["search"]) ? "search=".$search : "")
+					?>";
+			});
+		}
 	</script>
 	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>

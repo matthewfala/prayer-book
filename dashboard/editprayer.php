@@ -76,15 +76,15 @@
 				<?php if(isset($error)): ?>
 					<h3 class="content-title"><?php echo $error ?></h3>
 				<?php else: ?>
-					<form action="viewprayer.php?prayer_id=<?php echo $_GET["prayer_id"] . GenerateRecoveryURL_and() ?>" method="post" class="input-form plastic elevate">
+					<form action="viewprayer.php?prayer_id=<?php echo $_GET["prayer_id"] . GenerateRecoveryURL_and() ?>" method="post" class="validate-submit input-form plastic elevate">
 						<div class="text-package">
 							<div class="text-input">
 								<label for="title">Title</label>
-					  			<input value="<?php echo $row["title"]?>" class="plastic depress" type="text" id="title" name="title" placeholder="title">
+					  			<input value="<?php echo $row["title"]?>" class="required-input plastic depress" type="text" id="title" name="title" placeholder="title">
 							</div>
 							<div class="text-input">
 								<label for="date">Date</label>
-					  			<input class="plastic depress" type="date" value="<?php
+					  			<input class="required-input plastic depress" type="date" value="<?php
 					  				$date = new DateTime($row["date"]);
 									echo $date->format("Y-m-d")
 								?>" id="date" name="date">
@@ -132,6 +132,8 @@
 			</div> <!-- #end .panel-content -->
 		</div> <!-- #end .panel -->
 	</div>
+
+	<script src="../config/validator.js"></script>
 	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 
 </body>

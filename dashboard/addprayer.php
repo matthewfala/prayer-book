@@ -39,15 +39,15 @@
 			</div>
 			<span class="panel-divider"><hr/></span>
 			<div class="panel-content wide-content">
-				<form action="addprayer_confirmation.php" method="post" class="input-form plastic elevate">
+				<form action="addprayer_confirmation.php" method="post" class="validate-submit input-form plastic elevate">
 					<div class="text-package">
 						<div class="text-input">
 							<label for="title">Title</label>
-				  			<input class="plastic depress" type="text" id="title" name="title" placeholder="title"><br><br>
+				  			<input class="required-input plastic depress" type="text" id="title" name="title" placeholder="title"><br><br>
 						</div>
 						<div class="text-input">
 							<label for="date">Date</label>
-				  			<input class="plastic depress" type="date" value="<?php echo date("Y-m-d") ?>" id="date" name="date" placeholder="date"><br><br>
+				  			<input class="required-input plastic depress" type="date" value="<?php echo date("Y-m-d") ?>" id="date" name="date" placeholder="date"><br><br>
 						</div>
 					</div>
 					<div class="text-package">
@@ -66,16 +66,18 @@
 					</div>
 					<div class="button-slot">
 						<input type="submit" value="Log Prayer" class="glazed-plastic plastic elevate btn-elevate">
-						<p class="error-message">Error message</p>
+						<p class="error-message error-hidden">Error message</p>
 						<a href="../index.php" class="link-form-button glazed-plastic plastic elevate btn-elevate">Back</a>
 					</div>
 				</form>
 				<br/>
 				<div class="mega-image dashboard-image"></div>
+				<br/>
 
 			</div> <!-- #end .panel-content -->
 		</div> <!-- #end .panel -->
 	</div>
+	<script src="../config/validator.js"></script>
 	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 
 </body>
