@@ -472,6 +472,17 @@ span.panel-divider hr {
 	padding: var(--depress-padding);
 	margin: 0.5em 0;
 }
+.edit-button-slot {
+	padding-top: 1em !important;
+	justify-content: flex-start !important;
+	align-items: flex-start;
+	flex-direction: column;
+	display: flex;
+}
+.edit-button-slot .btn-elevate {
+	margin-top: .75em;
+	margin-bottom: .75em;
+}
 .text-input textarea, .text-input select {
 	font-size: 1.05em;
 }
@@ -483,7 +494,7 @@ span.panel-divider hr {
 	background-color: var(--glazed-color);
 	color: rgba(255, 255, 255, 0.7);
 	border: 0;
-	padding: 0.5em 1em;
+	padding: 0.5em 1em !important;
 	margin-left: 0;
 	display: inline-block;
 }
@@ -495,6 +506,9 @@ span.panel-divider hr {
 	color: var(--danger-color);
 	font-size: 0.75em;
 }
+.error-hidden {
+	display: none;
+}
 .button-pack {
 	display: flex;
 	flex-direction: row;
@@ -504,7 +518,7 @@ span.panel-divider hr {
 	box-sizing: border-box;
 	padding-left: 1.5em;
 	padding-right: 1.5em;
-	margin: 1.5em 2em;
+	margin: 1.5em 1.5em;
 }
 .add-prayer {
 	border: 0 !important;
@@ -565,14 +579,16 @@ span.panel-divider hr {
 		justify-content: center;
 	}
 	.button-slot input, .button-slot .btn-elevate {
-		margin-left: 1em !important;
+		margin-left: 1em;
 	}
 	.button-slot .error-message {
 		align-self: center;
 	}
 	.edit-button-slot {
-		padding-top: 1.5em !important;
-		justify-content: flex-start !important;
+		align-items: stretch;
+	}
+	.edit-button-slot .btn-elevate {
+		margin-left: 0;
 	}
 	.button-pack {
 		justify-content: flex-end;

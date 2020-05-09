@@ -120,7 +120,7 @@
 							
 						<div class="button-slot edit-button-slot">
 							<input type="submit" value="Update Prayer" class="glazed-plastic plastic elevate btn-elevate">
-							<p class="error-message">Error message</p>
+							<p class="error-message error-hidden">Error message</p>
 							<a href="<?php echo "viewprayer.php?prayer_id=" . $_GET["prayer_id"] . GenerateRecoveryURL_and() ?>" class="link-form-button glazed-plastic plastic elevate btn-elevate">Back</a>
 						</div>
 					</form>
