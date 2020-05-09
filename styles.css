@@ -467,13 +467,17 @@ span.panel-divider hr {
 	display: flex;
 	flex-direction: column;
 }
-.text-input input, .text-input select, .text-input textarea, .button-slot .btn-elevate, .search-bar {
+.text-input input, .text-input select, .text-input textarea, .search-bar {
 	border: 0;
 	padding: var(--depress-padding);
 	margin: 0.5em 0;
 }
+.button-slot .btn-elevate {
+	border: 0;
+	margin: 0.5em 0;
+}
 .edit-button-slot {
-	padding-top: 1em !important;
+	padding-top: 0.25em;
 	justify-content: flex-start !important;
 	align-items: flex-start;
 	flex-direction: column;
@@ -494,7 +498,7 @@ span.panel-divider hr {
 	background-color: var(--glazed-color);
 	color: rgba(255, 255, 255, 0.7);
 	border: 0;
-	padding: 0.5em 1em !important;
+	padding: 0.5em 1em;
 	margin-left: 0;
 	display: inline-block;
 }
@@ -518,7 +522,7 @@ span.panel-divider hr {
 	box-sizing: border-box;
 	padding-left: 1.5em;
 	padding-right: 1.5em;
-	margin: 1.5em 1.5em;
+	margin: 1.5em 2em;
 }
 .add-prayer {
 	border: 0 !important;
@@ -600,6 +604,9 @@ span.panel-divider hr {
 }
 @media(min-width: 992px)
 {
+	.edit-button-slot {
+		padding-top: 1.3em !important;
+	}
 	.mega-image {
 		max-height: 20%;
 	}

@@ -169,9 +169,6 @@ else {
 					<?php endif; ?>
 				</div>
 			</div>
-			<?php if (isset($_GET["edit_success"]) && $_GET["edit_success"] == "true"): ?>
-				<div class="toast">Successfully edited prayer</div>
-			<?php endif; ?>
 			<!--
 			<div class="neu-popup">
 				<div class="neu-popup-content">
@@ -184,6 +181,7 @@ else {
 			</div>
 			`-->
 		</div> <!-- #end .panel -->
+		<?php include "../config/widgets.php" ?>
 	</div>
 
 	<script type="text/javascript">
