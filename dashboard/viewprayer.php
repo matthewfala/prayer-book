@@ -134,7 +134,7 @@ else {
 							$date = new DateTime($row["date"]);
 							echo $date->format("F d, Y")
 							?></h3>
-							<p class="content-text"><?php if (isset($row["description"]) && !empty($row["description"])) echo $row["description"]?></p>
+							<pre class="content-text"><?php if (isset($row["description"]) && !empty($row["description"])) echo $row["description"]?></pre>
 						</div>
 
 						<?php if((isset($row["answer_date"]) && !empty($row["answer_date"]))
@@ -153,9 +153,9 @@ else {
 									}
 									?>
 								</h3>
-								<p class="content-text">
-									<?php if (isset($row["answer_description"]) && !empty($row["answer_description"])) echo $row["answer_description"]?>
-								</p>
+								<pre class="content-text"><?php
+									if (isset($row["answer_description"]) && !empty($row["answer_description"])) echo $row["answer_description"]
+								?></pre>
 							</div>
 						</div> <!-- #end .content-area -->
 					<?php endif; ?>

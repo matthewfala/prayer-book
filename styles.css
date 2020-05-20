@@ -47,7 +47,7 @@ body {
 	display: flex;
 	flex-direction: column;
 }
-body, textarea, input, select {
+body, textarea, input, select, pre {
 	font-family: 'Raleway', sans-serif;
 }
 img {
@@ -55,6 +55,9 @@ img {
 }
 a {
 	text-decoration: none;
+}
+pre {
+	font-size: 1em;
 }
 .mega-image {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./images/prayer_banner.jpg');
